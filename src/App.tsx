@@ -1,5 +1,5 @@
 import "./App.scss";
-import { TrainingForm } from "./components/TrainingForm/TrainingForm";
+import TrainingForm from "./components/TrainingForm/TrainingForm";
 
 function App() {
   return <TrainingForm />;

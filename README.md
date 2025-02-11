@@ -31,6 +31,7 @@ Strona jest dostępna na żywo pod adresem
 - Sass
 - React Calendar
 - Prettier
+- Axios
 
 ## 🚀 Instalacja i uruchomienie
 
@@ -49,6 +50,7 @@ Strona jest dostępna na żywo pod adresem
    npm install --save-dev prettier
    npm install sass
    npm install react-calendar
+   npm install axios
    npm instal dotenv
    ```
 
