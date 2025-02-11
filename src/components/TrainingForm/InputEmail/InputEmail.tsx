@@ -31,8 +31,8 @@ const InputEmail: React.FC<InputEmailProps> = ({
       />
       {error && (
         <div className="flex justify-start items-start">
-          <img src={errorIcon} alt="Error icon" className="w-4 h-4 mt-[4px] mr-[9px]" />
-          <p className="text-red-500 text-sm">{error}</p>
+          <img src={errorIcon} alt="Error icon" className="w-4 h-4 mt-[8px] mr-[9px]" />
+          <p className="mt-[4px] text-sm">{error}</p>
         </div>
       )}
     </div>

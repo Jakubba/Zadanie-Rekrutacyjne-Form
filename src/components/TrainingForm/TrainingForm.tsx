@@ -5,14 +5,14 @@ import axios from "axios";
 import { Holiday } from "./../../types";
 import { DEFAULT_ERRORS, DEFAULT_FORM_DATA } from "./constansts";
 // components
+import SectionTitle from "./SectionTitle/SectionTitle";
 import InputText from "./InputText/InputText";
 import InputEmail from "./InputEmail/InputEmail";
 import InputRange from "./InputRange/InputRange";
 import InputFile from "./InputFile/InputFile";
 import BookingCalendar from "./BookingCalendar/BookingCalendar";
 // env
-const API_URL = import.meta.env.VITE_HOLIDAYS_API_URL;
-const API_KEY = import.meta.env.VITE_API_NINJAS_KEY;
+
 const WORKOUT_API_URL = import.meta.env.VITE_WORKOUT_API_URL;
 
 const TrainingForm: React.FC = () => {
@@ -24,17 +24,36 @@ const TrainingForm: React.FC = () => {
   const [errors, setErrors] = useState(DEFAULT_ERRORS);
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
 
-  useEffect(() => {
-    fetch(`${API_URL}?country=PL&year=2024`, {
-      headers: { "X-Api-Key": API_KEY },
-    })
-      .then((response) => response.json())
-      .then((data) => setHolidays(data))
-      .catch((error) => console.error("Error fetching holidays:", error));
-  }, []);
+  // useEffect(() => {
+  //   fetch(`${API_URL}?country=PL&year=2024`, {
+  //     headers: { "X-Api-Key": API_KEY },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => setHolidays(data))
+  //     .catch((error) => console.error("Error fetching holidays:", error));
+  // }, []);
 
   const NATIONAL_HOLIDAY = "NATIONAL_HOLIDAY";
 
+  // const isDateDisabled = (date: Date) => {
+  //   const formattedDate = date.toISOString().split("T")[0];
+  //   return (
+  //     holidays.some((h) => h.date === formattedDate && h.type === NATIONAL_HOLIDAY) ||
+  //     date.getDay() === 0
+  //   );
+  // };
+
+  // const handleDateChange = (date: Date) => {
+  //   setSelectedDate(date);
+  //   setSelectedTime(null);
+  //   const formattedDate = date.toISOString().split("T")[0];
+  //   const holiday = holidays.find((h) => h.date === formattedDate);
+
+  //   console.log("Selected date:", formattedDate);
+  //   console.log("Holiday found:", holiday);
+
+  //   setHolidayMessage(holiday ? `It's ${holiday.name}` : null);
+  // };
   const isDateDisabled = (date: Date) => {
     const formattedDate = date.toISOString().split("T")[0];
     return (
@@ -46,9 +65,15 @@ const TrainingForm: React.FC = () => {
   const handleDateChange = (date: Date) => {
     setSelectedDate(date);
     setSelectedTime(null);
+
     const formattedDate = date.toISOString().split("T")[0];
     const holiday = holidays.find((h) => h.date === formattedDate);
-    setHolidayMessage(holiday ? `It's ${holiday.name}` : null);
+
+    if (holiday) {
+      setHolidayMessage(`It's ${holiday.name}`);
+    } else {
+      setHolidayMessage(null);
+    }
   };
 
   const validateInput = (name: string, value: string) => {
@@ -75,6 +100,7 @@ const TrainingForm: React.FC = () => {
 
     setErrors((prevErrors) => ({ ...prevErrors, [name]: errorMessage }));
   };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -149,8 +175,8 @@ const TrainingForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto pl-[23px] pr-[25px]">
-      <h2 className="text-2xl font-medium mb-4 text-[#000853] text-left">Personal Info</h2>
+    <form onSubmit={handleSubmit} className="w-[calc(100%-48px)] md:w-full mx-auto  max-w-[426px]">
+      <SectionTitle level="h2">Personal Info</SectionTitle>
       {/* First Name */}
       <InputText
         label="First Name"
@@ -178,7 +204,6 @@ const TrainingForm: React.FC = () => {
         onChange={handleChange}
         error={errors.email}
       />
-
       {/* Age */}
       <InputRange
         label="Age"
@@ -199,7 +224,7 @@ const TrainingForm: React.FC = () => {
       />
 
       {/* Date */}
-      <h3 className="text-2xl font-medium mb-4 text-[#000853] text-left">Your workout</h3>
+      <SectionTitle level="h3">Your Workout</SectionTitle>
       <BookingCalendar
         label="Date"
         selectedDate={selectedDate}
@@ -207,7 +232,6 @@ const TrainingForm: React.FC = () => {
         isDateDisabled={isDateDisabled}
         holidayMessage={holidayMessage}
       />
-
       {/* Submit */}
       <button
         type="submit"
