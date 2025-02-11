@@ -1,11 +1,8 @@
-import './App.css';
+import "./App.scss";
+import { TrainingForm } from "./components/TrainingForm/TrainingFrom";
 
 function App() {
-  return (
-    <>
-      <h1 className='text-3xl'>Hello</h1>
-    </>
-  );
+  return <TrainingForm />;
 }
 
 export default App;
