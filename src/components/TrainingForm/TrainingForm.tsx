@@ -1,4 +1,6 @@
 import React from "react";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 export const TrainingForm = () => {
   return (
@@ -44,8 +46,9 @@ export const TrainingForm = () => {
           <span className="text-[12px]">8</span>
           <span className="text-[12px]">100</span>
         </div>
-        <div>
-          <input className="w-full mt-1" type="range" name="age" min="8" max="100" />
+        <div className="relative">
+          <input className="w-full mt-1 custom-range" type="range" name="age" min="8" max="100" />
+          <div className="age-tooltip visible">10</div>
         </div>
       </div>
       {/* Photo */}
@@ -78,7 +81,28 @@ export const TrainingForm = () => {
       </div>
       {/* Date */}
       <h3 className="text-2xl font-medium mb-4 text-[#000853] text-left">Your workout</h3>
-      <div></div>
+      <div className="mb-4 flex flex-col md:flex-row justify-start align-items-start ">
+        <div className="w-full md:w-[calc(100% - 100px)]">
+          <h3 className="mb-[8px] text-left text-base text-[#000853]">Date</h3>
+          <Calendar className="border p-2 w-full" />
+        </div>
+        <div className="md:ml-2 md:min-w-[100px]">
+          <div className="flex flex-col">
+            <h3 className="mb-[8px] text-left text-base text-[#000853]">Time</h3>
+            <div className="flex flex-wrap md:flex-col">
+              {["12:00", "14:00", "16:30", "18:30", "20:00"].map((time) => (
+                <button
+                  key={time}
+                  type="button"
+                  className="m-1 p-2 rounded cursor-pointer border-2 border-[#761BE4]"
+                >
+                  {time}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
       {/* Submit */}
       <button
         className="w-full py-2 px-4 rounded mt-4 bg-[#761BE4] text-white cursor-pointer hover:bg-[#6a19cd]"

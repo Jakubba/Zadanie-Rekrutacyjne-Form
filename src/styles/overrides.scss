@@ -1,0 +1,182 @@
+.react-calendar {
+  border-radius: 8px;
+  &__navigation {
+    &__label {
+      color: black;
+    }
+  }
+}
+.react-calendar__navigation__next-button,
+.react-calendar__navigation__prev-button {
+  font-size: 0 !important;
+  position: relative;
+  &::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+  }
+}
+.react-calendar__navigation__next-button::after {
+  background: url("./assets/icons/arrow-right-icon.svg") no-repeat center center;
+}
+.react-calendar__navigation__prev-button::after {
+  background: url("./assets/icons/arrow-left-icon.svg") no-repeat center center;
+}
+.react-calendar__navigation__next2-button,
+.react-calendar__navigation__prev2-button {
+  display: none !important;
+}
+.react-calendar__month-view__weekdays__weekday {
+  abbr {
+    text-decoration: none;
+    font-size: 14px;
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #000853;
+    text-decoration: none;
+    text-transform: initial;
+  }
+}
+.react-calendar__tile {
+  position: relative;
+  &:hover {
+    background: transparent !important;
+  }
+  abbr {
+    position: relative;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #000853;
+    text-decoration: none;
+    text-transform: initial;
+    z-index: 3;
+  }
+  &--active {
+    background: transparent !important;
+    position: relative;
+    abbr {
+      color: #ffffff;
+    }
+    &::after {
+      position: absolute;
+      content: "";
+      top: 50%;
+      left: 50%;
+      display: block;
+      transform: translate(-50%, -50%);
+      width: 25px;
+      height: 25px;
+      background-color: #761be4;
+      border-radius: 50%;
+    }
+  }
+  &:hover {
+    abbr {
+      color: #ffffff;
+    }
+    &::after {
+      position: absolute;
+      display: block;
+      content: "";
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 25px;
+      height: 25px;
+      background-color: #761be4;
+      border-radius: 50%;
+    }
+  }
+}
+.react-calendar__tile:disabled {
+  background-color: transparent !important;
+  abbr {
+    color: #898da9 !important;
+  }
+}
+.react-calendar__tile--now {
+  background: transparent !important;
+  abbr {
+    color: #761be4 !important;
+  }
+  &:hover {
+    abbr {
+      color: #ffffff !important;
+    }
+  }
+}
+
+.custom-range {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: #cbb6e5; /* Pasek */
+  border-radius: 4px;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  background: #cbb6e5; /* Pasek */
+  border-radius: 4px;
+}
+
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #761be4; /* Suwak */
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -6px;
+  position: relative;
+  z-index: 2;
+}
+
+.custom-range::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  background: #cbb6e5;
+  border-radius: 4px;
+}
+
+.custom-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #761be4;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.age-tooltip {
+  position: absolute;
+  bottom: -35px;
+  transform: translateX(-50%);
+  background: url("./assets/icons/union-bg.svg");
+  color: white;
+  width: 37px;
+  height: 31px;
+  padding-top: 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #761be4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  z-index: 3;
+}

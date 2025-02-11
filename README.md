@@ -1,25 +1,27 @@
-# Formularz - zadanie rekrutacyjne 
+# Formularz - zadanie rekrutacyjne
 
-Aplikacja to prosty formularz rejestracyjny umożliwiający zapis na trening. Użytkownik wprowadza swoje dane, wybiera termin, a następnie potwierdza zgłoszenie. Aplikacja zapewnia intuicyjny interfejs i szybki proces rejestracji. 
+Aplikacja to prosty formularz rejestracyjny umożliwiający zapis na trening. Użytkownik wprowadza swoje dane, wybiera termin, a następnie potwierdza zgłoszenie. Aplikacja zapewnia intuicyjny interfejs i szybki proces rejestracji.
+
+Strona jest dostępna na żywo pod adresem
 
 ## 📌 Funkcjonalności
 
 1. Formularz rejestracyjny
 
-    Imię i nazwisko – pole tekstowe do wpisania danych osobowych.
-    Adres e-mail – pole do podania e-maila w celu potwierdzenia rejestracji.
-    Wiek – suwak do zaznaczenia wieku w przedziale od 8 do 100 lat.
-    Zdjęcie - pole do wgrania swojego zdjęcia.
+   Imię i nazwisko – pole tekstowe do wpisania danych osobowych.
+   Adres e-mail – pole do podania e-maila w celu potwierdzenia rejestracji.
+   Wiek – suwak do zaznaczenia wieku w przedziale od 8 do 100 lat.
+   Zdjęcie - pole do wgrania swojego zdjęcia.
 
 2. Wybór terminu treningu
 
-    Kalendarz – interaktywny wybór miesiąca, dnia treningu.
-    Godzina treningu – lista dostępnych godzin do wyboru.
+   Kalendarz – interaktywny wybór miesiąca, dnia treningu.
+   Godzina treningu – lista dostępnych godzin do wyboru.
 
 3. Walidacja danych
 
-    Sprawdzenie, czy wszystkie wymagane pola są wypełnione.
-    Walidacja poprawności e-maila i wieku.
+   Sprawdzenie, czy wszystkie wymagane pola są wypełnione.
+   Walidacja poprawności e-maila i wieku.
 
 ## 🛠 Technologie
 
@@ -29,7 +31,6 @@ Aplikacja to prosty formularz rejestracyjny umożliwiający zapis na trening. U�
 - Sass
 - React Calendar
 - Prettier
-
 
 ## 🚀 Instalacja i uruchomienie
 
@@ -74,5 +75,5 @@ Projekt dostępny na licencji MIT.
 
 ---
 
-📌 **Autor:** 
+📌 **Autor:**
 Jakub Barszcz
