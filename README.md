@@ -6,7 +6,7 @@ Aplikacja to prosty formularz rejestracyjny umożliwiający zapis na trening. U�
 Strona jest dostępna na żywo pod adresem.
 
 ```sh
-
+    https://zadanie-rekrutacyjne-form-6g5m.vercel.app/
 ```
 
 ## 📌 Funkcjonalności
