@@ -41,7 +41,7 @@ const TrainingForm: React.FC = () => {
   };
 
   const validateInput = (name: string, value: string): void => {
-    let errorMessage: JSX.Element | string = "";
+    let errorMessage: React.ReactNode = "";
     const NAME_REGEX = /^[A-Za-z]+$/;
     const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
