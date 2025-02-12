@@ -17,6 +17,7 @@ interface BookingCalendarProps {
   onDateChange: (date: Date) => void;
   selectedTime: string | null;
   setSelectedTime: (time: string | null) => void;
+  holidayMessage?: string | null;
 }
 
 const BookingCalendar: React.FC<BookingCalendarProps> = ({
