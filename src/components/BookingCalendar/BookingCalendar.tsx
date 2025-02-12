@@ -4,6 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import axios from "axios";
 import { Holiday } from "./BookingCalendar.types";
 import AvailableTimes from "./../AvailableTimes/AvailableTimes";
+import errorIconPink from "./../../assets/icons/error-icon-pink.svg";
 
 const API_URL = import.meta.env.VITE_HOLIDAYS_API_URL;
 const API_KEY = import.meta.env.VITE_API_NINJAS_KEY;
@@ -46,7 +47,7 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
 
   const handleDateClick = (date: Date) => {
     if (isDateDisabled && isDateDisabled(date)) {
-      setUnavailableMessage("test.");
+      setUnavailableMessage("It is All Saints’ Day.");
     } else {
       setUnavailableMessage(null);
       onDateChange(date);
@@ -82,8 +83,8 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
   };
 
   return (
-    <section className="mb-4 flex flex-col justify-start">
-      <div className="mb-4 flex flex-col md:flex-row justify-start">
+    <section className="flex flex-col justify-start">
+      <div className="mb-2 flex flex-col md:flex-row justify-start">
         <div className="w-full lg:w-[calc(100% - 76px)] lg:max-w-[326px]">
           <h3 className="mb-2 text-left text-base text-[#000853]">{label}</h3>
           <Calendar
@@ -101,7 +102,12 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
             <AvailableTimes selectedTime={selectedTime} setSelectedTime={setSelectedTime} />
           )}
       </div>
-      {unavailableMessage && <p className="text-red-600 mt-2">{unavailableMessage}</p>}
+      {unavailableMessage && (
+        <div className="text-sm w-full flex gap-2 flex-nowrap">
+          <img src={errorIconPink}></img>
+          {unavailableMessage}
+        </div>
+      )}
     </section>
   );
 };

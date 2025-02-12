@@ -109,7 +109,7 @@ const TrainingForm: React.FC = () => {
   };
 
   //function for validation
-  const isFormValid = () => {  
+  const isFormValid = () => {
     // console.log("First Name:", formData.firstName.trim() !== "");
     // console.log("Last Name:", formData.lastName.trim() !== "");
     // console.log("Email:", formData.email.trim() !== "");
@@ -223,7 +223,7 @@ const TrainingForm: React.FC = () => {
       />
       <button
         type="submit"
-        className={`w-full py-2 px-4 rounded-lg mt-4 ${
+        className={`w-full py-2 px-4 rounded-lg mt-12 ${
           isFormValid()
             ? "bg-[#761BE4] text-white cursor-pointer hover:bg-[#6a19cd]"
             : "btn-disactive text-white"
