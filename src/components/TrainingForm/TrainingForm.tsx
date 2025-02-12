@@ -22,28 +22,21 @@ const TrainingForm: React.FC = () => {
   const [errors, setErrors] = useState(DEFAULT_ERRORS);
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
 
-  // useEffect(() => {
-  //   fetch(`${API_URL}?country=PL&year=2024`, {
-  //     headers: { "X-Api-Key": API_KEY },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => setHolidays(data))
-  //     .catch((error) => console.error("Error fetching holidays:", error));
-  // }, []);
-
   const NATIONAL_HOLIDAY = "NATIONAL_HOLIDAY";
 
-  // const isDateDisabled = (date: Date) => {
-  //   const formattedDate = date.toISOString().split("T")[0];
-  //   return (
-  //     holidays.some((h) => h.date === formattedDate && h.type === NATIONAL_HOLIDAY) ||
-  //     date.getDay() === 0
-  //   );
-  // };
+  const isDateDisabled = (date: Date) => {
+    const formattedDate = date.toISOString().split("T")[0];
+    const isHoliday = holidays.some((h) => h.date === formattedDate && h.type === NATIONAL_HOLIDAY);
+    // console.log(
+    //   `Checking date ${formattedDate}: isHoliday=${isHoliday}, isSunday=${date.getDay() === 0}`
+    // );
+    return isHoliday || date.getDay() === 0;
+  };
 
   // const handleDateChange = (date: Date) => {
   //   setSelectedDate(date);
   //   setSelectedTime(null);
+
   //   const formattedDate = date.toISOString().split("T")[0];
   //   const holiday = holidays.find((h) => h.date === formattedDate);
 
@@ -52,17 +45,6 @@ const TrainingForm: React.FC = () => {
 
   //   setHolidayMessage(holiday ? `It's ${holiday.name}` : null);
   // };
-  const isDateDisabled = (date: Date) => {
-    const formattedDate = date.toISOString().split("T")[0];
-    return (
-      holidays.some((h) => h.date === formattedDate && h.type === NATIONAL_HOLIDAY) ||
-      date.getDay() === 0
-    );
-  };
-  // useEffect(() => {
-  //   console.log("Checking form validity...");
-  //   console.log(isFormValid());
-  // }, [formData, selectedDate, selectedTime, errors]);
 
   const handleDateChange = (date: Date) => {
     setSelectedDate(date);
@@ -128,17 +110,17 @@ const TrainingForm: React.FC = () => {
 
   //function for validation
   const isFormValid = () => {
-    // console.log("First Name:", formData.firstName.trim() !== "");
-    // console.log("Last Name:", formData.lastName.trim() !== "");
-    // console.log("Email:", formData.email.trim() !== "");
-    // console.log("Age:", formData.age, "Valid Age:", formData.age >= 8 && formData.age <= 100);
-    // console.log("Selected Date:", selectedDate !== null);
-    // console.log("Selected Time:", selectedTime !== null);
-    // console.log("Errors:", errors);
-    // console.log(
-    //   "Errors Valid:",
-    //   Object.values(errors).every((error) => error === "")
-    // );
+    console.log("First Name:", formData.firstName.trim() !== "");
+    console.log("Last Name:", formData.lastName.trim() !== "");
+    console.log("Email:", formData.email.trim() !== "");
+    console.log("Age:", formData.age, "Valid Age:", formData.age >= 8 && formData.age <= 100);
+    console.log("Selected Date:", selectedDate !== null);
+    console.log("Selected Time:", selectedTime !== null);
+    console.log("Errors:", errors);
+    console.log(
+      "Errors Valid:",
+      Object.values(errors).every((error) => error === "")
+    );
 
     return (
       formData.firstName.trim() !== "" &&
@@ -239,7 +221,6 @@ const TrainingForm: React.FC = () => {
         isDateDisabled={isDateDisabled}
         holidayMessage={holidayMessage}
       />
-      {/* Submit */}
       <button
         type="submit"
         className={`w-full py-2 px-4 rounded-lg mt-4 ${

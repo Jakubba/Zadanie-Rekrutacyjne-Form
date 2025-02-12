@@ -60,7 +60,7 @@ const InputRange: React.FC<InputRangeProps> = ({ label, name, min, max, value, o
 
         <div
           ref={tooltipRef}
-          className={`absolute bottom-[-45px]  bg-black text-[#761BE4] text-xs rounded-lg transition-opacity duration-200 custom-tootlip h-[40px] w-[40px] flex justify-center items-center ${
+          className={`absolute bottom-[-45px]  bg-black text-[#761BE4] text-xs rounded-lg transition-opacity duration-200 custom-tooltip h-[40px] w-[40px] flex justify-center items-center ${
             showTooltip ? "opacity-100" : "opacity-0"
           }`}
           style={{ transform: "translateX(-50%)" }}

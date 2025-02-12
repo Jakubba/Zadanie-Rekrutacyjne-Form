@@ -9,7 +9,7 @@ const availableTimes = ["12:00", "14:00", "16:30", "18:30", "20:00"];
 
 const AvailableTimes: React.FC<AvailableTimesProps> = ({ selectedTime, setSelectedTime }) => {
   return (
-    <div className="md:ml-2 md:min-w-[100px]">
+    <div className="md:ml-2 md:min-w-[76px]">
       <h3 className="mb-2 text-left text-base text-[#000853]">Time</h3>
       <ul className="flex flex-wrap md:flex-col">
         {availableTimes.map((time) => (
@@ -21,7 +21,10 @@ const AvailableTimes: React.FC<AvailableTimesProps> = ({ selectedTime, setSelect
                   ? "border-2 border-[#761BE4]"
                   : "border hover:border-[#761BE4]"
               }`}
-              onClick={() => setSelectedTime(time)}
+              onClick={() => {
+                console.log("Selected time:", time);
+                setSelectedTime(time);
+              }}
             >
               {time}
             </button>

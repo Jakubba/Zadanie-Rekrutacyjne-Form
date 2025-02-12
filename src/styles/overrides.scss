@@ -201,8 +201,15 @@
   }
 }
 
-.custom-tootlip {
+.custom-tooltip {
   background: url("./assets/icons/union-bg.svg");
   background-repeat: no-repeat;
   background-size: none;
+}
+
+.disable-date,
+.date-holiday {
+  abbr {
+    color: #898da9;
+  }
 }
