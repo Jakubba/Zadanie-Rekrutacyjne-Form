@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
 // types
-import { Holiday } from "./../../types";
-import { DEFAULT_ERRORS, DEFAULT_FORM_DATA } from "./constansts";
-// components
-import SectionTitle from "./SectionTitle/SectionTitle";
-import InputText from "./InputText/InputText";
-import InputEmail from "./InputEmail/InputEmail";
-import InputRange from "./InputRange/InputRange";
-import InputFile from "./InputFile/InputFile";
-import BookingCalendar from "./BookingCalendar/BookingCalendar";
+import { Holiday } from "./../BookingCalendar/BookingCalendar.types";
+//data
+import { DEFAULT_ERRORS, DEFAULT_FORM_DATA } from "./TrainingForm.constants.ts";
 // env
-
 const WORKOUT_API_URL = import.meta.env.VITE_WORKOUT_API_URL;
+// components
+import SectionTitle from "./../SectionTitle/SectionTitle";
+import InputText from "./../InputText/InputText";
+import InputEmail from "./../InputEmail/InputEmail";
+import InputRange from "./../InputRange/InputRange";
+import InputFile from "./../InputFile/InputFile";
+import BookingCalendar from "./../BookingCalendar/BookingCalendar";
 
 const TrainingForm: React.FC = () => {
   const [holidays, setHolidays] = useState<Holiday[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [holidayMessage, setHolidayMessage] = useState<string | null>(null);
-  const [showTooltip, setShowTooltip] = useState(false);
   const [errors, setErrors] = useState(DEFAULT_ERRORS);
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
 
@@ -61,6 +59,10 @@ const TrainingForm: React.FC = () => {
       date.getDay() === 0
     );
   };
+  // useEffect(() => {
+  //   console.log("Checking form validity...");
+  //   console.log(isFormValid());
+  // }, [formData, selectedDate, selectedTime, errors]);
 
   const handleDateChange = (date: Date) => {
     setSelectedDate(date);
@@ -105,15 +107,13 @@ const TrainingForm: React.FC = () => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
     validateInput(name, value);
-    setShowTooltip(true);
   };
 
-  //do photo
+  //function for file
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       if (file.size > 2 * 1024 * 1024) {
-        // adding 2MB limit
         setErrors((prev) => ({ ...prev, photo: "File size must be less than 2MB." }));
         return;
       }
@@ -126,19 +126,33 @@ const TrainingForm: React.FC = () => {
     setFormData((prev) => ({ ...prev, photo: null }));
   };
 
-  //walidacja
+  //function for validation
   const isFormValid = () => {
+    // console.log("First Name:", formData.firstName.trim() !== "");
+    // console.log("Last Name:", formData.lastName.trim() !== "");
+    // console.log("Email:", formData.email.trim() !== "");
+    // console.log("Age:", formData.age, "Valid Age:", formData.age >= 8 && formData.age <= 100);
+    // console.log("Selected Date:", selectedDate !== null);
+    // console.log("Selected Time:", selectedTime !== null);
+    // console.log("Errors:", errors);
+    // console.log(
+    //   "Errors Valid:",
+    //   Object.values(errors).every((error) => error === "")
+    // );
+
     return (
       formData.firstName.trim() !== "" &&
       formData.lastName.trim() !== "" &&
       formData.email.trim() !== "" &&
       selectedDate !== null &&
       selectedTime !== null &&
+      formData.age >= 8 &&
+      formData.age <= 100 &&
       Object.values(errors).every((error) => error === "")
     );
   };
 
-  // submit
+  //function for submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -177,7 +191,6 @@ const TrainingForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} className="w-[calc(100%-48px)] md:w-full mx-auto  max-w-[426px]">
       <SectionTitle level="h2">Personal Info</SectionTitle>
-      {/* First Name */}
       <InputText
         label="First Name"
         name="firstName"
@@ -186,7 +199,6 @@ const TrainingForm: React.FC = () => {
         onChange={handleChange}
         error={errors.firstName}
       />
-      {/* Last Name */}
       <InputText
         label="Last Name"
         name="lastName"
@@ -195,7 +207,6 @@ const TrainingForm: React.FC = () => {
         onChange={handleChange}
         error={errors.lastName}
       />
-      {/* Email */}
       <InputEmail
         label="Email Address"
         name="email"
@@ -204,7 +215,6 @@ const TrainingForm: React.FC = () => {
         onChange={handleChange}
         error={errors.email}
       />
-      {/* Age */}
       <InputRange
         label="Age"
         name="age"
@@ -213,7 +223,6 @@ const TrainingForm: React.FC = () => {
         value={formData.age}
         onChange={handleChange}
       />
-      {/* Photo */}
       <InputFile
         label="Photo"
         name="photo"
@@ -222,8 +231,6 @@ const TrainingForm: React.FC = () => {
         onRemove={handleRemoveFile}
         error={errors.photo}
       />
-
-      {/* Date */}
       <SectionTitle level="h3">Your Workout</SectionTitle>
       <BookingCalendar
         label="Date"
@@ -235,7 +242,7 @@ const TrainingForm: React.FC = () => {
       {/* Submit */}
       <button
         type="submit"
-        className={`w-full py-2 px-4 rounded mt-4 ${
+        className={`w-full py-2 px-4 rounded-lg mt-4 ${
           isFormValid()
             ? "bg-[#761BE4] text-white cursor-pointer hover:bg-[#6a19cd]"
             : "btn-disactive text-white"

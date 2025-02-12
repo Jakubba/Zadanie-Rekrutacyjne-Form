@@ -181,3 +181,28 @@
   white-space: nowrap;
   z-index: 3;
 }
+
+.btn-delete {
+  .delete-icon {
+    display: block;
+    background: url("./assets/icons/default-close-icon.svg") no-repeat center center;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    .delete-icon {
+      background: url("./assets/icons/hover-close-icon.svg") no-repeat center center;
+      background-size: contain;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.custom-tootlip {
+  background: url("./assets/icons/union-bg.svg");
+  background-repeat: no-repeat;
+  background-size: none;
+}
