@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -13,7 +13,7 @@ import InputFile from "./../InputFile/InputFile";
 import BookingCalendar from "./../BookingCalendar/BookingCalendar";
 
 const TrainingForm: React.FC = () => {
-  const [holidays, setHolidays] = useState<Holiday[]>([]);
+  const [holidays] = useState<Holiday[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [holidayMessage, setHolidayMessage] = useState<string | null>(null);
