@@ -22,6 +22,8 @@ Formularz składa się z pól, w które należy wpisać swoje imię, nazwisko i 
 
 ### 2. Wybór terminu treningu
 
+Uwaga ! Święta są zaznaczane jedynie na rok 2024.
+
 - **Kalendarz** – interaktywny wybór miesiąca i dnia treningu.
 - **Godzina treningu** – lista dostępnych godzin do wyboru.
 - **Ograniczenia** – na kalendarzu nie można zapisać się w dni świąteczne i wolne od pracy. W takich przypadkach wyświetlany jest komunikat "It is a holiday" lub "It is [nazwa święta]".

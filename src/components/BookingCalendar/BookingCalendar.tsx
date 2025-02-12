@@ -92,6 +92,7 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
             value={selectedDate}
             tileClassName={tileClassName}
             className="border p-2 w-full"
+            activeStartDate={new Date(2024, 10, 1)}
           />
         </div>
 
