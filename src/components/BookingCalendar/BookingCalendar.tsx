@@ -68,6 +68,8 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
       const formattedDate = date.toISOString().split("T")[0];
       const holiday = holidays.find((h) => h.date === formattedDate);
 
+      setSelectedTime(null);
+
       if (holiday) {
         setUnavailableMessage(`It is ${holiday.name}.`);
       } else {
@@ -93,9 +95,11 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
           />
         </div>
 
-        {selectedDate && !holidayMessage && !(isDateDisabled && isDateDisabled(selectedDate)) && (
-          <AvailableTimes selectedTime={selectedTime} setSelectedTime={setSelectedTime} />
-        )}
+        {selectedDate &&
+          !unavailableMessage &&
+          !(isDateDisabled && isDateDisabled(selectedDate)) && (
+            <AvailableTimes selectedTime={selectedTime} setSelectedTime={setSelectedTime} />
+          )}
       </div>
       {unavailableMessage && <p className="text-red-600 mt-2">{unavailableMessage}</p>}
     </section>

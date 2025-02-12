@@ -109,18 +109,18 @@ const TrainingForm: React.FC = () => {
   };
 
   //function for validation
-  const isFormValid = () => {
-    console.log("First Name:", formData.firstName.trim() !== "");
-    console.log("Last Name:", formData.lastName.trim() !== "");
-    console.log("Email:", formData.email.trim() !== "");
-    console.log("Age:", formData.age, "Valid Age:", formData.age >= 8 && formData.age <= 100);
-    console.log("Selected Date:", selectedDate !== null);
-    console.log("Selected Time:", selectedTime !== null);
-    console.log("Errors:", errors);
-    console.log(
-      "Errors Valid:",
-      Object.values(errors).every((error) => error === "")
-    );
+  const isFormValid = () => {  
+    // console.log("First Name:", formData.firstName.trim() !== "");
+    // console.log("Last Name:", formData.lastName.trim() !== "");
+    // console.log("Email:", formData.email.trim() !== "");
+    // console.log("Age:", formData.age, "Valid Age:", formData.age >= 8 && formData.age <= 100);
+    // console.log("Selected Date:", selectedDate !== null);
+    // console.log("Selected Time:", selectedTime !== null);
+    // console.log("Errors:", errors);
+    // console.log(
+    //   "Errors Valid:",
+    //   Object.values(errors).every((error) => error === "")
+    // );
 
     return (
       formData.firstName.trim() !== "" &&
