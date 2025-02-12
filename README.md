@@ -52,6 +52,7 @@ Strona jest dostępna na żywo pod adresem.
    npm install sass
    npm install react-calendar
    npm install axios
+   npm install react-toastify
    npm install dotenv
    ```
 

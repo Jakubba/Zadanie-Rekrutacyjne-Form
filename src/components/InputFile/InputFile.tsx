@@ -1,5 +1,4 @@
 import React from "react";
-import deleteIcon from "./../../assets/icons/default-close-icon.svg";
 import Label from "../Label/Label";
 import ErrorText from "../ErrorText/ErrorText";
 

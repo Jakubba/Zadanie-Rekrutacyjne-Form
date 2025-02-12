@@ -9,28 +9,36 @@ import errorIconPink from "./../../assets/icons/error-icon-pink.svg";
 const API_URL = import.meta.env.VITE_HOLIDAYS_API_URL;
 const API_KEY = import.meta.env.VITE_API_NINJAS_KEY;
 
+const NATIONAL_HOLIDAY = "NATIONAL_HOLIDAY";
+
 interface BookingCalendarProps {
   label: string;
   selectedDate: Date | null;
   onDateChange: (date: Date) => void;
-  isDateDisabled?: (date: Date) => boolean;
-  holidayMessage?: string;
+  selectedTime: string | null;
+  setSelectedTime: (time: string | null) => void;
 }
 
 const BookingCalendar: React.FC<BookingCalendarProps> = ({
   label,
   selectedDate,
   onDateChange,
-  isDateDisabled,
-  holidayMessage,
+  selectedTime,
+  setSelectedTime,
 }) => {
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [holidays, setHolidays] = useState<Holiday[]>([]);
   const [unavailableMessage, setUnavailableMessage] = useState<string | null>(null);
 
+  const isDateDisabled = (date: Date): boolean => {
+    const formattedDate = date.toISOString().split("T")[0];
+    const isHoliday = holidays.some((h) => h.date === formattedDate && h.type === NATIONAL_HOLIDAY);
+    const IS_SUNDAY = date.getDay() === 0;
+    return isHoliday || IS_SUNDAY;
+  };
+
   useEffect(() => {
     axios
-      .get(`${API_URL}?country=PL&year=2024`, {
+      .get<Holiday[]>(`${API_URL}?country=PL&year=2024`, {
         headers: { "X-Api-Key": API_KEY },
       })
       .then((response) => {
@@ -45,27 +53,8 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
       .catch((error) => console.error("Error fetching holidays:", error));
   }, []);
 
-  const handleDateClick = (date: Date) => {
-    if (isDateDisabled && isDateDisabled(date)) {
-      setUnavailableMessage("It is All Saints’ Day.");
-    } else {
-      setUnavailableMessage(null);
-      onDateChange(date);
-    }
-  };
-
-  const tileClassName = ({ date }: { date: Date }) => {
-    const formattedDate = date.toISOString().split("T")[0];
-    const isHoliday = holidays.some((h) => h.date === formattedDate);
-    const isDisabled = isDateDisabled ? isDateDisabled(date) : false;
-
-    if (isHoliday) return "date-holiday";
-    if (isDisabled) return "disable-date";
-    return "";
-  };
-
-  const onClickDay = (date: Date) => {
-    if (isDateDisabled && isDateDisabled(date)) {
+  const handleDateClick = (date: Date): void => {
+    if (isDateDisabled(date)) {
       const formattedDate = date.toISOString().split("T")[0];
       const holiday = holidays.find((h) => h.date === formattedDate);
 
@@ -82,6 +71,16 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
     }
   };
 
+  const tileClassName = ({ date }: { date: Date }): string => {
+    const formattedDate = date.toISOString().split("T")[0];
+    const isHoliday = holidays.some((h) => h.date === formattedDate);
+    const isDisabled = isDateDisabled(date);
+
+    if (isHoliday) return "date-holiday";
+    if (isDisabled) return "disable-date";
+    return "";
+  };
+
   return (
     <section className="flex flex-col justify-start">
       <div className="mb-2 flex flex-col md:flex-row justify-start">
@@ -91,20 +90,17 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
             onChange={(date) => handleDateClick(date as Date)}
             value={selectedDate}
             tileClassName={tileClassName}
-            onClickDay={onClickDay}
             className="border p-2 w-full"
           />
         </div>
 
-        {selectedDate &&
-          !unavailableMessage &&
-          !(isDateDisabled && isDateDisabled(selectedDate)) && (
-            <AvailableTimes selectedTime={selectedTime} setSelectedTime={setSelectedTime} />
-          )}
+        {selectedDate && !unavailableMessage && !isDateDisabled(selectedDate) && (
+          <AvailableTimes selectedTime={selectedTime} setSelectedTime={setSelectedTime} />
+        )}
       </div>
       {unavailableMessage && (
         <div className="text-sm w-full flex gap-2 flex-nowrap">
-          <img src={errorIconPink}></img>
+          <img src={errorIconPink} alt="Error Icon" />
           {unavailableMessage}
         </div>
       )}
