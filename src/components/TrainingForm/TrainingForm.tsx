@@ -41,14 +41,20 @@ const TrainingForm: React.FC = () => {
   };
 
   const validateInput = (name: string, value: string): void => {
-    let errorMessage: string = "";
+    let errorMessage: JSX.Element | string = "";
     const NAME_REGEX = /^[A-Za-z]+$/;
     const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if ((name === "firstName" || name === "lastName") && !NAME_REGEX.test(value)) {
       errorMessage = "Please use only letters.";
     } else if (name === "email" && !EMAIL_REGEX.test(value)) {
-      errorMessage = "Please use correct formatting.\n\nExample: address@email.com";
+      errorMessage = (
+        <>
+          Please use correct formatting.
+          <br />
+          Example: address@email.com
+        </>
+      );
     }
 
     setErrors((prevErrors) => ({ ...prevErrors, [name]: errorMessage }));
