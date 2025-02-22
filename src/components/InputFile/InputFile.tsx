@@ -16,7 +16,7 @@ const FileUploadInput: React.FC<{
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
 }> = ({ name, onChange, error }) => (
-  <div className="relative flex flex-col justify-center items-center text-center">
+  <div className="relative flex flex-col justify-center items-center text-center w-full h-full">
     <input
       id={`${name}-upload`}
       type="file"

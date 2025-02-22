@@ -81,7 +81,6 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
     if (isDisabled) return "disable-date";
     return "";
   };
-
   return (
     <section className="flex flex-col justify-start">
       <div className="mb-2 flex flex-col md:flex-row justify-start">
@@ -92,7 +91,7 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
             value={selectedDate}
             tileClassName={tileClassName}
             className="border p-2 w-full"
-            activeStartDate={new Date(2024, 10, 1)}
+            defaultActiveStartDate={new Date(2024, 10, 1)}
           />
         </div>
 
